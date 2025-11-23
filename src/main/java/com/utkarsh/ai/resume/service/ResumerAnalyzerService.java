@@ -18,8 +18,12 @@ import org.springframework.web.multipart.MultipartFile;
 @Slf4j
 public class ResumerAnalyzerService {
     private final String RESUME_ANALYZER_PROMPT = """
-            Extract resume data and return in TOON format:
-            "summary": "","name": "","email": "","experienceYears": "","skills": [], "overallRating": ""
+            Extract resume data and **STRICTLY** return a JSON object
+            with **ONLY** the following six fields. Do not include any other fields like
+            'workExperience' or 'education' under any circumstances. The response must be a single,
+            valid JSON object.
+            Use the following keys: "summary", "name", "email", "experienceYears", "skills" (as a list of strings),
+            and "overallRating"
             """;
 
     private final AIService aiService;
